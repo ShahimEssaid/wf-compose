@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  wildfly:
+    build:
+      context: ./wildfly
+    image: se-wildfly-25.0.1:wip
+    ports:
+      - "8888:8080"
+      - "9999:9990"
+    command:
+      - "/opt/jboss/wildfly/bin/standalone.sh"
+      - "-b"
+      - "0.0.0.0"
+      - "-bmanagement"
+      - "0.0.0.0"
+    volumes:
+      - wildfly-25.0.1-root:/opt/jboss/wildfly
+volumes:
+  wildfly-25.0.1-root:

@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  wildfly:
+    build:
+      context: ./wildfly
+    image: se-wildfly:wip
+    ports:
+      - "8888:8080"
+      - "9999:9990"
+    command:
+      - "/opt/jboss/wildfly/bin/standalone.sh"
+      - "-b"
+      - "0.0.0.0"
+      - "-bmanagement"
+      - "0.0.0.0"
+    volumes:
+      - wildfly-root:/opt/jboss/wildfly
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+volumes:
+  wildfly-root:
